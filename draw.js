@@ -10,7 +10,9 @@ function setup() {
   background(240);
   counter = 5;
 
-  console.log(generateRecaman(50));
+  frameRate(10);
+
+  // console.log(generateRecaman(50));
 
   var sequence = generateRecaman(150);
   drawRecaman(sequence);
@@ -28,12 +30,13 @@ function generateRecaman(x) {
   var prevNum = 0;
   var results = [prevNum];
 
+  // Counter variable i serves to keep track of gap length:
   for (var i=1; i < x; i++) {
     var back = prevNum - i;
     var canGoBack = back > 0 && !results.includes(back);
 
     var nextNum = canGoBack ? back : prevNum + i;
-    // Store nextNum in prevNum variable for next iteration to access
+    // Store nextNum in prevNum variable for next iteration to access:
     prevNum = nextNum;
     results.push(prevNum);
   }
@@ -48,7 +51,6 @@ function drawRecaman(seq) {
     var y = seq[i + 1];
     var center = (x + y) / 2;
     var radius = Math.abs(x - y) / 2;
-    // console.log(x, y, center, radius);
     var start = i % 2 == 0 ? 0 : PI;
     var stop = i % 2 == 0 ? PI : 2*PI;
 
